@@ -1,0 +1,98 @@
+body {
+    background-color: #080D18;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin:10px;
+}
+
+h1 {
+    color: #00BFFF;
+    text-align: center;
+    font-family: "cracked";
+    text-shadow:0px 0px 5px #00BFFF;
+    letter-spacing: 5px;
+    line-height: 0.8;
+    border-bottom: 3px solid cyan;
+    
+    
+}
+
+nav {
+    text-align: center;
+    word-spacing: 100px;
+    text-shadow: 0px 0px 1px cyan;
+    line-height: 60px;
+    
+}
+nav a{display: inline-block;margin:0 15px;}
+
+h2 {
+    color: #00BFFF;
+    text-shadow:0px 0px 2px cyan;
+    text-transform:capitalize;
+    word-spacing: 3px;
+    letter-spacing: 3px;
+    line-height: 9.8px;
+}
+
+h2 + p {
+    font-size:10px;
+    color: #00BFFF;
+    word-spacing:1px;
+    line-height:9.5px;
+    
+    
+    
+}
+p{
+letter-spacing: 1px;
+}
+
+a {
+    color: #168BFF;
+}
+
+#about {
+    color: white;
+    text-align: center;
+    font-family: "poppins";
+    font-weight: 400;
+    padding: 15px;
+    line-height: 1.8;
+}
+
+#Dev {
+    color: #00BFFF;
+    font-weight: bold;
+}
+
+buttom:hover{
+color: #a855f7;
+font-weight: bolder;
+}
+button{
+    background-color:lightblue;
+    padding:3px;
+    border: #080D18;
+    border-radius: 6px;
+    box-shadow: #080D18;
+    border-color: #168BFF;
+    
+}
+
+#o {
+    color: #00BFFF;
+}
+a:hover{
+    color:#a855f7;
+    font-weight:bolder
+}
+@font-face{
+    font-family: "cracked";
+    src:url("fonts/CrackedBold Regular.ttf") format("true type");
+}
+@font-face{
+    font-family:"poppins";
+    src:url("fonts/poppins-Regular.ttf")format("true type")
+
+}
