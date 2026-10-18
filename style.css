@@ -1,8 +1,11 @@
 body {
-    background-color: #080D18;
-    color: white;
+    
+background: linear-gradient(125deg, #02040B, #08152E, #123F70, #07101F);
+    
     font-family: Arial, sans-serif;
-    margin:10px;
+    margin-left: 80px;
+    margin-right: 80px;
+    
 }
 
 h1 {
@@ -12,19 +15,48 @@ h1 {
     text-shadow:0px 0px 5px #00BFFF;
     letter-spacing: 5px;
     line-height: 0.8;
-    border-bottom: 3px solid cyan;
+    margin-bottom: 80px;
+    left:auto;
+    
  
 }
 
 nav {
     text-align: center;
-    word-spacing: 100px;
-    text-shadow: 0px 0px 1px cyan;
-    line-height: 60px;
-    
+    word-spacing: 200px;
+    text-shadow: 0px px 1px cyan;
+    line-height: 30px;
+    display:flex;
+    justify-content: center;
+    gap: 150px;
 }
-nav a{display: inline-block;margin:0 15px;}
+nav a{
+    
+transition: 0.3s ease;
+border: 2px solid teal;
+padding:0px 5px;
+border-radius: 7px;
+margin-right: 30px;
+width: 200px;
+background-color: #10272f;
+font-weight: bolder;
+text-decoration: none;
 
+
+
+}
+nav a:link{
+    color:white;
+}
+nav a:hover{
+    color:#5e1bc2;
+}
+nav a:active{
+    color:#00ffa3;
+}
+nav a:visited{
+    color: #a78bfa;
+}
 h2 {
     color: #00BFFF;
     text-shadow:0px 0px 2px cyan;
@@ -32,6 +64,7 @@ h2 {
     word-spacing: 3px;
     letter-spacing: 3px;
     line-height: 9.8px;
+    margin:100px;
 }
 
 h2 + p {
@@ -47,22 +80,21 @@ p{
 letter-spacing: 1px;
 }
 
-a {
-    color: #168BFF;
-}
 
 #about {
     color: white;
     text-align: center;
     font-family: "poppins";
-    font-weight: 400;
+    font-weight: bolder;
     padding: 15px;
     line-height: 1.8;
+    
+    
 }
 
 #Dev {
     color: #00BFFF;
-    font-weight: bold;
+    
 }
 
 buttom:hover{
@@ -70,22 +102,26 @@ color: #a855f7;
 font-weight: bolder;
 }
 button{
-    background-color:lightblue;
-    padding:3px;
+    
+    padding: 6px;
+    background-color:chocolate;
+    margin: 2px;
     border: #080D18;
     border-radius: 6px;
     box-shadow: #080D18;
-    border-color: #168BFF;
+    border-color: white;
+    color:white;
     
 }
 
 #o {
     color: #00BFFF;
+    position:static;
+    bottom:100px;
+    left:100px;
+
 }
-a:hover{
-    color:#a855f7;
-    font-weight:bolder
-}
+
 @font-face{
     font-family: "cracked";
     src:url("fonts/CrackedBold Regular.ttf") format("true type");
@@ -95,3 +131,32 @@ a:hover{
     src:url("fonts/poppins-Regular.ttf")format("true type")
 
 }
+.detect-lines a{
+    color:white;
+    font-weight: bold;
+    font-family:sans-serif;
+}
+.detect-lines a:hover{color:#a78bfa;
+}
+
+.detect-lines a:active{
+    color:#00ffa3;
+
+}
+.detect-lines a{
+    text-decoration:none;
+    border: 2px solid #00ffa3;
+    margin: 110px;
+    white-space: nowrap;
+    padding: 5px 14px;
+    border-radius:7px;
+    width: 160px;
+    background-color: #080D18;
+border: 2px solid #8B5CF6;
+}
+.detect-lines{
+    display:flex;
+    gap:30px;
+
+}
+
