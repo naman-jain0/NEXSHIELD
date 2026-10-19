@@ -136,7 +136,7 @@ button{
     font-weight: bold;
     font-family:sans-serif;
 }
-.detect-lines a:hover{color:#a78bfa;
+.detect-lines a:hover{color:#5e1bc2;
 }
 
 .detect-lines a:active{
@@ -158,5 +158,9 @@ border: 2px solid #8B5CF6;
     display:flex;
     gap:30px;
 
+}
+ p::selection{
+background-color:#5b2333;
+color:#ffe4e8;
 }
 
