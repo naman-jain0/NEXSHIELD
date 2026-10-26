@@ -51,12 +51,8 @@ nav {
     
 }
 nav a{
-<<<<<<< HEAD
     display: inline-block;
-transition: 0.3s ease;
-=======
-transition: 0.4s ease;
->>>>>>> 8cbf871408bb9ec03262dc0cadd919907f4ccad9
+    transition: 0.3s ease;
 border: 2px solid teal;
 padding:4px 10px;
 border-radius: 7px;
@@ -67,11 +63,7 @@ width: 200px;
 background-color: #10272f;
 font-weight: bolder;
 text-decoration: none;
-<<<<<<< HEAD
-box-sizing: bordr-box
-=======
-
->>>>>>> 8cbf871408bb9ec03262dc0cadd919907f4ccad9
+box-sizing: border-box;
 }
 nav a:link{
     color:white;
@@ -241,8 +233,6 @@ color:#ffe4e8;
 p{
     color:white;
 }
-<<<<<<< HEAD
-
 .home-btn {
     display: inline-block;
     padding: 4px 10px;
@@ -265,10 +255,10 @@ p{
 }
 
 .email-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    text-a    display: flex;
-lign: center;
+    text-align: center;
     width: 100%;
     box-sizing: border-box;
 }
@@ -358,7 +348,6 @@ lign: center;
     box-sizing: border-box;
 }
 
-=======
 .Alert{
     text-align: center;
     font-size: 20px;
@@ -367,4 +356,3 @@ lign: center;
 .Alert:hover{
     transform: scale(1.1);
 }
->>>>>>> 8cbf871408bb9ec03262dc0cadd919907f4ccad9
