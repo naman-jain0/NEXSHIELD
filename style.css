@@ -17,8 +17,27 @@ h1 {
     line-height: 0.8;
     margin-bottom: 80px;
     left:auto;
-    
- 
+    animation-name: heading;
+ animation-duration: 1.5s;
+ animation-timing-function: ease-in-out;
+ animation-fill-mode: none;
+ animation-iteration-count: 1;
+}
+@keyframes heading{
+    from{
+transform: translateY(30px);
+opacity: 0;
+text-shadow: 0 0 0px #00bfff;
+letter-spacing: 0px;
+
+    }
+    to{
+transform:translateY(0);
+opacity:1;
+text-shadow: 0 0 15px #00bfff;
+letter-spacing: 5px;
+text-shadow: 0px 0px 15px #00BFFF,0 0 15px #00bfff;
+    }
 }
 
 nav {
@@ -29,9 +48,10 @@ nav {
     display:flex;
     justify-content: center;
     gap: 150px;
+    
 }
 nav a{
-transition: 0.3s ease;
+transition: 0.4s ease;
 border: 2px solid teal;
 padding:0px 5px;
 border-radius: 7px;
@@ -40,6 +60,7 @@ width: 200px;
 background-color: #10272f;
 font-weight: bolder;
 text-decoration: none;
+
 }
 nav a:link{
     color:white;
@@ -56,6 +77,8 @@ nav a:active{
 nav a:visited{
     color: #a78bfa;
 }
+    
+
 h2 {
     color: #00BFFF;
     text-shadow:0px 0px 2px cyan;
@@ -64,6 +87,8 @@ h2 {
     letter-spacing: 3px;
     line-height: 9.8px;
     margin:100px;
+    transition: 1s ease;
+    perspective: 1000px;
 }
 
 h2 + p {
@@ -71,6 +96,11 @@ h2 + p {
     color: #00BFFF;
     word-spacing:1px;
     line-height:9.5px; 
+}
+h2:hover{
+transform:  rotatey(360deg);
+
+
 }
 p{
 letter-spacing: 1px;
@@ -99,7 +129,7 @@ transform: scale(1.1);
 }
 
 button:hover{
-color: #a855f7;
+color: cyan;
 font-weight: bolder;
 transform: scale(1.1px);
 box-shadow:00px 00px 15px #8B5CF6;
@@ -138,8 +168,12 @@ button{
     color:white;
     font-weight: bold;
     font-family:sans-serif;
-    transition: 0.3s ease
+    transition: 0.4s ease;
+    animation-name: detectionreveal;
+    
+
 }
+
 .detect-lines a:hover{color:grey;
     transform: scale(1.1) translateY(-2px) ;
     box-shadow:00px 00px 15px #8B5CF6;
@@ -160,12 +194,34 @@ button{
     width: 160px;
     background-color: #080D18;
 border: 2px solid #8B5CF6;
+opacity: 0;
 }
 .detect-lines{
     display:flex;
     gap:30px;
-
 }
+@keyframes  detectionreveal{
+    from{
+        opacity:0;
+
+    }
+    to{
+        opacity: 1;
+    }
+}
+.detect-lines a:nth-child(1){
+    animation:detectionreveal 1s ease 0s 1;
+    animation-fill-mode: forwards;
+}
+.detect-lines a:nth-child(2){
+    animation:detectionreveal 1s ease 0.4s 1;
+    animation-fill-mode: forwards;
+}
+.detect-lines a:nth-child(3){
+    animation:detectionreveal 1s ease 0.8s 1;
+    animation-fill-mode: forwards;
+}
+
  p::selection{
 background-color:#5b2333;
 color:#ffe4e8;
@@ -173,4 +229,12 @@ color:#ffe4e8;
 
 p{
     color:white;
+}
+.Alert{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+.Alert:hover{
+    transform: scale(1.1);
 }
