@@ -31,15 +31,19 @@ nav {
     gap: 150px;
 }
 nav a{
+    display: inline-block;
 transition: 0.3s ease;
 border: 2px solid teal;
-padding:0px 5px;
+padding:4px 10px;
 border-radius: 7px;
+flex: 1;
+text-align: center;
 margin-right: 30px;
 width: 200px;
 background-color: #10272f;
 font-weight: bolder;
 text-decoration: none;
+box-sizing: bordr-box
 }
 nav a:link{
     color:white;
@@ -174,3 +178,119 @@ color:#ffe4e8;
 p{
     color:white;
 }
+
+.home-btn {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 2px solid teal;
+    border-radius: 7px;
+    background-color: #10272f;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    min-width: 200px;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+}
+
+.home-btn:hover {
+    color: #5e1bc2;
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 0 15px #8B5CF6;
+}
+
+.email-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.email-container h2 {
+    margin: 40px 0 25px;
+    line-height: normal;
+}
+
+.email-container .home-btn {
+    margin: 0 0 15px;
+}
+
+.email-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email-container textarea {
+    width: 350px;
+    max-width: 90vw;
+    min-height: 150px;
+    box-sizing: border-box;
+}
+
+
+.APK-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.APK-container h2 {
+    margin: 40px 0 25px;
+    line-height: normal;
+}
+
+.APK-container .home-btn {
+    margin: 0 0 15px;
+}
+
+.APK-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.APK-container textarea {
+    width: 350px;
+    max-width: 90vw;
+    min-height: 150px;
+    box-sizing: border-box;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.message-container h2 {
+    margin: 40px 0 25px;
+    line-height: normal;
+}
+
+.message-container .home-btn {
+    margin: 0 0 15px;
+}
+
+.message-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-container textarea {
+    width: 350px;
+    max-width: 90vw;
+    min-height: 150px;
+    box-sizing: border-box;
+}
+
