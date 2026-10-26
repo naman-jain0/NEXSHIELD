@@ -1,0 +1,14 @@
+.loader{
+    width:1rem;
+    
+    border-radius: 50%;
+    border:2rem solid cyan;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    
+}
+body{
+    background-color: black;
+}
