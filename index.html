@@ -1,40 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
  <title>NEXSHIELD</title>
  <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
 </head>
 
+<div class="custom-cursor">
+  <div class="crosshair-ring"></div>
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+</div>
+<script>
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+</script>
 <body>
 
 <main>
+<header>
+<h1 class="head">NEXSHIELD</h1>
+<nav class="headbar">
 
-<h1>NEXSHIELD</h1>
-
-<nav>
-<a href="www.home.nex.com">Home </a>
-<a href="www.detection.com">Detection </a>
-<a href="#www.nex.about.com">About</a>
+<a href="index.html">Home </a>
+<a href="#detection">Detection </a>
+<a href="#about">About</a>
 </nav>
-
+</header>
 <h2 style="text-align: center;">SCAM DETECTION</h2>
 <p class="Alert">Stay Alert.Stay Secure.
     
 </p>
         
+<div class="shield-wrapper">
+    <div class="radar-ring"></div>
+
+    <div class="shield-animation">
+    <svg viewBox="0 0 24 24"
+     width="100"
+     height="100"
+     fill="none"
+     stroke="#00BFFF"
+     stroke-width="1.5"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+        <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
+        <path d="m9 12 2 2 4-4"/>
+    </svg>
+</div>
+
+
+
+
 
 <div style="clear:both;"></div>
 
 </div>
 
 
-<p class = "detect-lines">
-<a  href="Message detection.html">Message detection </a>
-  <a href="Email scam detection.html">Email detection  </a>
- <a href="APK detection.html">APK detection </a>
+<div class = "detect-lines" id = "detection">
+<a  href="Message detection.html">Message detection 
+<img class = "msg-icon" src="icons/message-square-text.svg"alt="Message"></a>
+  <a href="Email scam detection.html">Email detection
+    <img class="mail-icon" src="icons/mail.svg" alt="Email"></a>
+ <a href="APK detection.html">APK detection
+    <img class="Apk-icon" src="icons/smartphone.svg" alt="APK"></a>
  
-</p>
+</div>
 
     <p id="about" style="color:white; text-align:center;">
  Nexshield is a cyber scam detection system which helps you to<br>
@@ -45,7 +83,7 @@ and helps you to maintain your privacy.
 
 <p id="Dev">DEVELOPERS</p>
 
-  <button type="reset" onclick="myfunction()">Click to know!</button>
+  <button type="button" onclick="myfunction()">Click to know!</button>
 
 <script>
    function myfunction() {

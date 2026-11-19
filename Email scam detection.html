@@ -1,31 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Nexshield - Email Scam Detection</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>NEXSHIELD</h1>
-    <h2>email scam detection</h2>
-    <a href="index.html">Home</a>
-    
-    <p>paste the suspicious email below.</p>
-    <br><br>
-    <form>
-        <textarea
-        rows="1"
-        cols="12"
-    <input type = "text"  id="email" name="email" placeholder="paste your email here...." required>
-        </textarea>
+
+<body class="email-page">
+
+    <header class="email-header">
+
+        <h1>NEXSHIELD</h1>
+
+        <a href="index.html" class="hm">Home</a>
+
+    </header>
 
 
-        <br><br>
-        <button type="button" SUBMIT>Detect</button>
-<div>
-    <input type="reset">
+    <main class="email-container">
 
-</div>
-    </form>
+        <section class="email-intro">
+
+            <span class="email-tag">AI SECURITY SCANNER</span>
+
+            <h2>Email Scam Detection</h2>
+
+            <p>
+                Identify suspicious emails and stay protected
+                from potential online threats.
+            </p>
+
+        </section>
+
+
+        <section class="email-scanner">
+
+            <h3>Analyze Your Email</h3>
+
+            <p class="scanner-description">
+                Paste the suspicious email content below.
+            </p>
+
+            <form>
+
+                <label for="email-content">
+                    Email Content
+                </label>
+
+                <textarea
+                    id="email-content"
+                    name="email"
+                    rows="7"
+                    placeholder="Paste your suspicious email here..."
+                    required
+                ></textarea>
+
+                <div class="email-actions">
+
+                    <button type="button" class="detect-btn">
+                        Scan Email
+                    </button>
+
+                    <button type="reset" class="reset-btn">
+                        Reset
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <section class="email-features">
+
+            <div class="feature-card">
+                <h3>Threat Analysis</h3>
+                <p>Identify suspicious email patterns.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Email Security</h3>
+                <p>Stay alert against potential email scams.</p>
+            </div>
+
+        </section>
+
+    </main>
+
 </body>
 </html>
