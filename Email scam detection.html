@@ -9,10 +9,15 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<<<<<<< HEAD
+
 
 <body class="email-page">
-
+<div class="custom-cursor">
+    <div class="crosshair-ring"></div>
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+</div>
     <header class="email-header">
 
         <h1>NEXSHIELD</h1>
@@ -20,23 +25,6 @@
         <a href="index.html" class="hm">Home</a>
 
     </header>
-=======
-<body>
-    <h1>NEXSHIELD</h1>
-    <div class="email-container">
-    <h2>email scam detection.</h2>
-    <a href="index.html"
-    class="home-btn">Home</a>
-    
-    <p>paste the suspicious email below.</p>
-    <br><br>
-    <form>
-        <textarea
-        rows="1"
-        cols="12"
-    <input type = "text"  id="email" name="email" placeholder="paste your email here...." required>
-        </textarea>
->>>>>>> c5ff9c300691ed61ae8b5ff14143899141d6d61b
 
 
     <main class="email-container">
@@ -109,12 +97,13 @@
         </section>
 
     </main>
+<script>
+const cursor = document.querySelector(".custom-cursor");
 
-<<<<<<< HEAD
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+</script>
 </body>
-=======
-</div>
-</form>
-</div>
->>>>>>> c5ff9c300691ed61ae8b5ff14143899141d6d61b
 </html>

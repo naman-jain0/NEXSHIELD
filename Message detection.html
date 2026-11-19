@@ -7,23 +7,19 @@
 
 </head>
 <body>
+    <div class="custom-cursor">
+    <div class="crosshair-ring"></div>
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+</div>
 
     <h1>NEXSHIELD</h1>
-    <div class="message-container">
 
-<<<<<<< HEAD
     <a href="index.html" class="hm">Home</a></a>
 <div class="detection-card">
     <h2>SMS / Message Detection</h2>
    <p class="line" >Paste the suspicious message below</p>
-=======
-    <a href="index.html"
-    class="home-btn">home</a>
-    
-
-    <h2>SMS / Message Detection.</h2>
-   <p>Paste the suspicious message below.</p>
->>>>>>> c5ff9c300691ed61ae8b5ff14143899141d6d61b
 
     <form>
 <textarea class="msg"
@@ -35,12 +31,14 @@
 <button type="submit">Detect message</button>
 
     </form>
-<<<<<<< HEAD
 </div>
-=======
-    
-    </div>
+<script>
+const cursor = document.querySelector(".custom-cursor");
 
->>>>>>> c5ff9c300691ed61ae8b5ff14143899141d6d61b
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+</script>
 </body>
 </html>
