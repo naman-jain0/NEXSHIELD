@@ -351,18 +351,25 @@ margin: 70px auto;
     border-radius: 15px;
     box-shadow:0 0 18px #00BFFF;
 }
-.hm{
+.hm {
     text-decoration: none;
-display: inline-block;
-    border: 1px solid cyan;
-    box-shadow: 0 0 15px lightgreen;
-    color: #00ffa3;
-    border-radius: 6px;
-    padding: 3px;
+    display: inline-block;
+    color: #55DFFF;
+    background: rgba(8, 21, 46, 0.9);
+    border: 1px solid #00BFFF;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.25);
     transition: 0.3s ease;
 }
-.hm:hover{
-transform: scale(1.1);
+
+.hm:hover {
+    color: #08152E;
+    background: #00BFFF;
+    border-color: #55DFFF;
+    box-shadow: 0 0 18px #00BFFF;
+    transform: translateY(-3px);
 }
 
 
@@ -951,4 +958,280 @@ body {
 
 body::-webkit-scrollbar {
     display: none;
+}
+.verification-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.verification-container h1 {
+    color: #00BFFF;
+    font-size: 40px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+.welcome-section {
+    margin-top: 35px;
+    margin-bottom: 30px;
+}
+
+.welcome-section h2 {
+    color: #FFFFFF;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.welcome-section p {
+    color: #A9C1D8;
+    font-size: 16px;
+}
+.security-card {
+    width: 400px;
+    padding: 30px;
+    background: linear-gradient(135deg, #08152E, #0B2342);
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3);
+}
+
+.security-card h2 {
+    color: #00BFFF;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.security-card p {
+    color: #DCEAF4;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+.captcha-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.captcha-box input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.captcha-box label {
+    color: #172033;
+    font-size: 16px;
+    cursor: pointer;
+}
+.verify-btn {
+    width: 100%;
+    padding: 13px;
+    background: #087DB8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.verify-btn:hover {
+    background: #00BFFF;
+    box-shadow: 0px 0px 15px rgba(0, 191, 255, 0.4);
+    transform: translateY(-2px);
+}
+.security-note {
+    color: #6f91ad;
+    font-size: 13px;
+    margin-top: 25px;
+    opacity: 0.8;
+}
+.verification-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        rgba(2, 4, 11, 0.75),
+        rgba(8, 21, 46, 0.85)
+    );
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+max-width: 1200px;
+margin: auto;
+}
+.security-card {
+    transition: 0.3s;
+}
+
+.security-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 30px rgba(0, 191, 255, 0.15);
+}
+@media (max-width: 600px) {
+    .security-card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .verification-container {
+        padding: 15px;
+    }
+
+    .welcome-section h2 {
+        font-size: 23px;
+    }
+
+    .security-card h2 {
+        font-size: 21px;
+    }
+}
+.security-card h2 {
+    line-height: 1.4;
+    margin: 0 0 15px 0;
+    letter-spacing: 1px;
+    text-transform: none;
+    perspective: none;
+}
+
+.welcome-section h2 {
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+    letter-spacing: 1px;
+    text-transform: none;
+    perspective: none;
+}
+/* APK DETECTION PAGE */
+
+.APK-container {
+    max-width: 750px;
+    margin: 70px auto;
+    padding: 40px;
+
+    background: rgba(8, 21, 46, 0.88);
+    border: 1px solid rgba(0, 191, 255, 0.45);
+    border-radius: 16px;
+
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+    text-align: center;
+
+    transition: 0.3s ease;
+}
+
+.APK-container:hover {
+    box-shadow: 0 0 28px rgba(0, 191, 255, 0.35);
+    transform: translateY(-3px);
+}
+
+/* HOME BUTTON */
+
+.home-btn {
+    display: inline-block;
+    text-decoration: none;
+
+    color: #55DFFF;
+    background: rgba(5, 25, 48, 0.9);
+
+    border: 1px solid #00BFFF;
+    border-radius: 8px;
+
+    padding: 9px 20px;
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.home-btn:hover {
+    background: #00BFFF;
+    color: #08152E;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #00BFFF;
+}
+
+/* APK HEADING */
+
+.APK-container h2 {
+    color: #00BFFF;
+    font-size: 30px;
+    letter-spacing: 2px;
+    line-height: 1.3;
+    margin: 35px 0 15px;
+}
+
+/* DESCRIPTION */
+
+.APK-container p {
+    color: #B9D5E8;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* FILE INPUT */
+
+#apk-file {
+    width: 100%;
+    padding: 18px;
+
+    background: #0B1930;
+    color: #DCEAF4;
+
+    border: 1px dashed #00BFFF;
+    border-radius: 10px;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* DETECT BUTTON */
+
+.APK-container button {
+    padding: 12px 30px;
+
+    background: #087FA8;
+    color: white;
+
+    border: 1px solid #00BFFF;
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.APK-container button:hover {
+    background: #00A6D6;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+    .APK-container {
+        width: 100%;
+        margin: 40px auto;
+        padding: 22px;
+    }
+
+    .APK-container h2 {
+        font-size: 23px;
+    }
+
+    #apk-file {
+        font-size: 12px;
+    }
 }

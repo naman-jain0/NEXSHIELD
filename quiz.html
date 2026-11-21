@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NEXSHIELD - Cyber Security Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="custom-cursor">
+    <div class="crosshair-ring"></div>
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+</div>
+
+
+    <nav>
+        <h1>NEXSHIELD</h1>
+
+        <div>
+            <a href="index.html">Home</a>
+            
+            
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <div class="quiz-container">
+
+        <h1>Cyber Security Quiz</h1>
+
+        <p>Test your knowledge and stay safe online.</p>
+
+        <div class="quiz-box">
+
+            <div class="quiz-header">
+                <span id="question-number">Question 1/10</span>
+                <span id="score">Score: 0</span>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progress"></div>
+            </div>
+
+            <h2 id="question">Your question will appear here</h2>
+
+            <div id="options">
+
+            </div>
+
+            <button id="next-btn">Next</button>
+
+        </div>
+
+    </div>
+
+    
+    <script>
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+</script>
+
+</body>
+</html>

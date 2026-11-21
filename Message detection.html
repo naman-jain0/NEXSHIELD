@@ -2,9 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
-
     <title>NexShield - Message Detection</title>
-
 </head>
 <body>
     <div class="custom-cursor">
@@ -16,22 +14,70 @@
 
     <h1>NEXSHIELD</h1>
 
-    <a href="index.html" class="hm">Home</a></a>
-<div class="detection-card">
-    <h2>SMS / Message Detection</h2>
-   <p class="line" >Paste the suspicious message below</p>
+    <div class="email-intro">
+    <span class="email-tag">MESSAGE SECURITY</span>
 
-    <form>
-<textarea class="msg"
-   rows="6"  
-   cols="35" 
-   placeholder="paste your message or sms here..." 
-></textarea>
-<br><br>
-<button type="submit">Detect message</button>
+    <h2>Message Scam Detection</h2>
 
-    </form>
+    <p>
+        Analyze suspicious SMS and messages to identify
+        potential scams and protect yourself from fraud.
+    </p>
 </div>
+
+    <a href="index.html" class="hm">Home</a>
+
+<div class="email-container">
+
+    <div class="email-scanner">
+
+        <h3>Scan Your Message</h3>
+
+        <p class="scanner-description">
+            Paste your SMS or suspicious message below for security analysis.
+        </p>
+
+        <label>Enter Your Message</label>
+
+        <textarea
+            class="msg"
+            rows="6"
+            placeholder="Paste your message or SMS here..."
+        ></textarea>
+
+        <div class="email-actions">
+            <button type="button" class="detect-btn">
+                Detect Message
+            </button>
+
+            <button type="reset" class="reset-btn">
+                Reset
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="email-features">
+
+ <div class="feature-card">
+ <h3>Spam Detection</h3>
+ <p>Identify suspicious and unwanted messages.</p>
+    </div>
+
+    <div class="feature-card">
+<h3>Scam Alerts</h3>
+<p>Recognize potentially fraudulent messages.</p>
+    </div>
+
+    <div class="feature-card">
+ <h3>Message Safety</h3>
+ <p>Stay alert and protect yourself from message scams.</p>
+    </div>
+
+</div>
+
 <script>
 const cursor = document.querySelector(".custom-cursor");
 

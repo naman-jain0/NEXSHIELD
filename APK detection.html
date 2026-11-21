@@ -2,27 +2,56 @@
 <html>
     <head>
         <title>Nexshield - APK Detection</title>
-        <link rel="stylesheet" href="style.css"></link>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>NEXSHIELD</h1>
-        <div class="APK-container">
-        <a href="index.html"
-         class="home-btn">Home</a>
-        <h2>APK scam detection.</h2>
-        <p>paste your APK file here</p>
-        <br><br>
+        <div class="custom-cursor">
+    <div class="crosshair-ring"></div>
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+</div>
 
-        <form>
-            <textarea
-            rows="10"
-            cols="15"
-            placeholder="paste your APK file here...."
-            ></textarea>
-<br><br>
-
-            <button type="submit">detect APK</button>
-        </form>
+        <div class="custom-cursor">
+            <div class="crosshair-ring"></div>
+            <div class="crosshair-horizontal"></div>
+            <div class="crosshair-vertical"></div>
+            <div class="crosshair-center"></div>
         </div>
-</body>
+
+        <h1>NEXSHIELD</h1>
+
+        <div class="APK-container">
+
+            <a href="index.html" class="home-btn">Home</a>
+
+            <h2>APK Scam Detection</h2>
+
+            <p>Upload your APK file here</p>
+
+            <br><br>
+
+            <form>
+
+                <input
+                    type="file"
+                    accept=".apk"
+                    id="apk-file"
+                >
+
+                <br><br>
+
+                <button type="submit">Detect APK</button>
+
+            </form>
+
+        </div>
+        <script>const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});</script>
+
+    </body>
 </html>
