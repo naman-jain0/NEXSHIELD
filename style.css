@@ -1235,3 +1235,68 @@ margin: auto;
         font-size: 12px;
     }
 }
+
+
+
+
+/* NEXSHIELD MESSAGE DETECTION RESULTS */
+
+.scan-result {
+    display: none;
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #08152E;
+    color: white;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.scan-result:not(:empty) {
+    display: block;
+}
+
+.scan-result h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.scan-result h4 {
+    margin: 15px 0 10px;
+    color: #55DFFF;
+}
+
+.scan-result ul {
+    padding-left: 22px;
+}
+
+.scan-result li {
+    margin-bottom: 8px;
+}
+
+.scan-result.high {
+    border: 2px solid #ff4444;
+    box-shadow: 0 0 15px rgba(255,68,68,0.3);
+}
+
+.scan-result.high h3 {
+    color: #ff5555;
+}
+
+.scan-result.medium {
+    border: 2px solid #ffb52e;
+    box-shadow: 0 0 15px rgba(255,181,46,0.3);
+}
+
+.scan-result.medium h3 {
+    color: #ffb52e;
+}
+
+.scan-result.low {
+    border: 2px solid #00e69a;
+    box-shadow: 0 0 15px rgba(0,230,154,0.3);
+}
+
+.scan-result.low h3 {
+    color: #00e69a;
+}
