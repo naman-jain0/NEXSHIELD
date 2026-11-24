@@ -1,67 +1,384 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>NEXSHIELD - Cyber Security Quiz</title>
-    <link rel="stylesheet" href="quiz.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+<body class="quiz-page">
+
+    <!-- Custom Cursor -->
     <div class="custom-cursor">
-    <div class="crosshair-ring"></div>
-    <div class="crosshair-horizontal"></div>
-    <div class="crosshair-vertical"></div>
-    <div class="crosshair-center"></div>
-</div>
+        <div class="crosshair-ring"></div>
+        <div class="crosshair-horizontal"></div>
+        <div class="crosshair-vertical"></div>
+        <div class="crosshair-center"></div>
+    </div>
 
-
+    <!-- Navbar -->
     <nav>
         <h1>NEXSHIELD</h1>
 
         <div>
             <a href="index.html">Home</a>
-            
-            
             <a href="about.html">About</a>
         </div>
     </nav>
 
-    <div class="quiz-container">
+    <!-- Quiz Heading -->
+    <section class="quiz-container">
 
-        <h1>Cyber Security Quiz</h1>
+        <div class="quiz-heading">
+            <h1>CYBER SECURITY QUIZ</h1>
+            <p>TEST YOUR CYBER DEFENCE KNOWLEDGE</p>
+        </div>
 
-        <p>Test your knowledge and stay safe online.</p>
-
-        <div class="quiz-box">
+        <!-- Quiz Card -->
+        <div class="quiz-box" id="quiz-box">
 
             <div class="quiz-header">
-                <span id="question-number">Question 1/10</span>
-                <span id="score">Score: 0</span>
+
+                <span id="question-number">
+                    QUESTION 01 / 10
+                </span>
+
+                <span id="score">
+                    SCORE: 00
+                </span>
+
             </div>
 
             <div class="progress-bar">
                 <div id="progress"></div>
             </div>
 
-            <h2 id="question">Your question will appear here</h2>
+            <h2 id="question"></h2>
 
-            <div id="options">
+            <div id="options"></div>
 
-            </div>
+            <p id="feedback"></p>
 
-            <button id="next-btn">Next</button>
+            <button id="next-btn" disabled>
+                NEXT →
+            </button>
 
         </div>
 
-    </div>
+        <!-- Result -->
+        <div class="result-box" id="result-box">
 
-    
+            <div class="result-icon">✓</div>
+
+            <h2>QUIZ COMPLETED</h2>
+
+            <h1 id="final-score">0/10</h1>
+
+            <p id="result-message"></p>
+
+            <button onclick="restartQuiz()">
+                RESTART QUIZ ↻
+            </button>
+
+        </div>
+
+        <p class="quiz-footer">
+            NEXSHIELD — SECURE YOUR DIGITAL WORLD
+        </p>
+
+    </section>
+
     <script>
-const cursor = document.querySelector(".custom-cursor");
 
-document.addEventListener("mousemove", function(e) {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-});
-</script>
+    // Custom Cursor
+    const cursor = document.querySelector(".custom-cursor");
+
+    document.addEventListener("mousemove", function(e) {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+    });
+
+    // Questions
+    const questions = [
+
+        {
+            question: "What is Phishing?",
+            options: [
+                "A programming language",
+                "A technique to steal sensitive information",
+                "A computer hardware component",
+                "A network connection"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "What should you do with a suspicious email?",
+            options: [
+                "Click every link",
+                "Share your password",
+                "Verify the sender first",
+                "Download attachments"
+            ],
+            answer: 2
+        },
+
+        {
+            question: "What is the safest action for an unknown APK?",
+            options: [
+                "Install it immediately",
+                "Disable antivirus",
+                "Share it with friends",
+                "Avoid installing untrusted APKs"
+            ],
+            answer: 3
+        },
+
+        {
+            question: "Should you share your OTP with a bank caller?",
+            options: [
+                "Yes, always",
+                "Never share your OTP",
+                "Only at night",
+                "Only with unknown callers"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "What is a malicious link?",
+            options: [
+                "A trusted bookmark",
+                "A normal search result",
+                "A link that may steal data or harm your device",
+                "An offline file"
+            ],
+            answer: 2
+        },
+
+        {
+            question: "What does HTTPS provide?",
+            options: [
+                "A guarantee that a website is genuine",
+                "An encrypted connection",
+                "Free internet",
+                "Complete virus protection"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "Which is the strongest password?",
+            options: [
+                "12345678",
+                "password",
+                "om12345",
+                "Nex@Shield#92X!"
+            ],
+            answer: 3
+        },
+
+        {
+            question: "What is Two-Factor Authentication?",
+            options: [
+                "Using two computers",
+                "An additional layer of security",
+                "Sharing two passwords",
+                "Using two browsers"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "You receive a lottery-winning SMS from an unknown number. What should you do?",
+            options: [
+                "Pay the processing fee",
+                "Click its link",
+                "Ignore and verify the claim",
+                "Share bank details"
+            ],
+            answer: 2
+        },
+
+        {
+            question: "What is the best way to stay safe online?",
+            options: [
+                "Trust every email",
+                "Share OTPs",
+                "Use the same password everywhere",
+                "Verify links, messages and senders"
+            ],
+            answer: 3
+        }
+
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("next-btn");
+    const feedback = document.getElementById("feedback");
+
+    // Load Question
+    function loadQuestion() {
+
+        answered = false;
+
+        feedback.textContent = "";
+        nextBtn.disabled = true;
+
+        const q = questions[currentQuestion];
+
+        questionEl.textContent = q.question;
+
+        document.getElementById("question-number").textContent =
+            `QUESTION ${String(currentQuestion + 1).padStart(2,"0")} / 10`;
+
+        document.getElementById("score").textContent =
+            `SCORE: ${String(score).padStart(2,"0")}`;
+
+        document.getElementById("progress").style.width =
+            ((currentQuestion + 1) / questions.length * 100) + "%";
+
+        optionsEl.innerHTML = "";
+
+        q.options.forEach((option, index) => {
+
+            const btn = document.createElement("button");
+
+            btn.className = "option-btn";
+            btn.textContent = option;
+
+            btn.addEventListener("click", () => {
+                selectAnswer(index, btn);
+            });
+
+            optionsEl.appendChild(btn);
+
+        });
+
+    }
+
+    // Answer Checking
+    function selectAnswer(selected, button) {
+
+        if (answered) return;
+
+        answered = true;
+
+        const correct = questions[currentQuestion].answer;
+
+        const allButtons =
+            document.querySelectorAll(".option-btn");
+
+        allButtons.forEach((btn, index) => {
+
+            btn.disabled = true;
+
+            if (index === correct) {
+                btn.classList.add("correct");
+            }
+
+        });
+
+        if (selected === correct) {
+
+            score++;
+
+            feedback.textContent = "✓ CORRECT ANSWER!";
+
+            feedback.style.color = "#00ffae";
+
+        } else {
+
+            button.classList.add("wrong");
+
+            feedback.textContent = "✕ INCORRECT! CHECK THE GREEN OPTION.";
+
+            feedback.style.color = "#ff5252";
+
+        }
+
+        document.getElementById("score").textContent =
+            `SCORE: ${String(score).padStart(2,"0")}`;
+
+        nextBtn.disabled = false;
+
+    }
+
+    // Next Button
+    nextBtn.addEventListener("click", function() {
+
+        if (!answered) return;
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+
+            loadQuestion();
+
+        } else {
+
+            showResult();
+
+        }
+
+    });
+
+    // Result
+    function showResult() {
+
+        document.getElementById("quiz-box").style.display = "none";
+
+        document.getElementById("result-box").style.display = "block";
+
+        const percentage = score * 10;
+
+        document.getElementById("final-score").textContent =
+            score + "/10";
+
+        let message;
+
+        if (score >= 9) {
+            message = "EXCELLENT! YOU ARE A CYBER SECURITY CHAMPION.";
+        } else if (score >= 7) {
+            message = "GREAT JOB! YOU KNOW HOW TO STAY SAFE ONLINE.";
+        } else if (score >= 5) {
+            message = "GOOD ATTEMPT! KEEP LEARNING.";
+        } else {
+            message = "KEEP PRACTICING! IMPROVE YOUR CYBER SECURITY KNOWLEDGE.";
+        }
+
+        document.getElementById("result-message").textContent =
+            message + " YOUR ACCURACY: " + percentage + "%";
+
+    }
+
+    // Restart
+    function restartQuiz() {
+
+        currentQuestion = 0;
+        score = 0;
+
+        document.getElementById("result-box").style.display = "none";
+
+        document.getElementById("quiz-box").style.display = "block";
+
+        loadQuestion();
+
+    }
+
+    // Start
+    loadQuestion();
+
+    </script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-alert("NEXSHIELD Javascript Connected!");
+
 
 
 

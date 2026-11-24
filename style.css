@@ -1300,3 +1300,516 @@ margin: auto;
 .scan-result.low h3 {
     color: #00e69a;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =================================
+   NEXSHIELD CYBER SECURITY QUIZ
+================================= */
+
+.quiz-page .quiz-container {
+    width: 90%;
+    max-width: 850px;
+    margin: 65px auto;
+    text-align: center;
+}
+
+.quiz-page .quiz-heading h1 {
+    color: #00eaff;
+    font-size: 36px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #00bfff;
+}
+
+.quiz-page .quiz-heading p {
+    color: #8baec4;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+.quiz-page .quiz-box,
+.quiz-page .result-box {
+    background: rgba(5, 17, 38, 0.94);
+    border: 1px solid #00bfff;
+    border-radius: 12px;
+    padding: 35px;
+    margin-top: 40px;
+    box-shadow:
+        0 0 15px rgba(0, 191, 255, 0.2),
+        inset 0 0 20px rgba(0, 191, 255, 0.04);
+    text-align: left;
+}
+
+.quiz-page .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #00eaff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.quiz-page .progress-bar {
+    height: 6px;
+    background: #1a304b;
+    margin: 25px 0 35px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.quiz-page #progress {
+    height: 100%;
+    width: 0%;
+    background: #00eaff;
+    box-shadow: 0 0 12px #00eaff;
+    transition: width 0.4s ease;
+}
+
+.quiz-page #question {
+    color: #ffffff;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.quiz-page #options {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.quiz-page .option-btn {
+    width: 100%;
+    padding: 16px;
+    text-align: left;
+    color: #cceeff;
+    background: #0b1c35;
+    border: 1px solid #164a69;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.quiz-page .option-btn:hover:not(:disabled) {
+    background: #103c55;
+    border-color: #00eaff;
+    box-shadow: 0 0 12px rgba(0, 234, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.quiz-page .option-btn.correct {
+    background: #063c32;
+    border-color: #00ffae;
+    color: #00ffae;
+}
+
+.quiz-page .option-btn.wrong {
+    background: #401923;
+    border-color: #ff5252;
+    color: #ff7777;
+}
+
+.quiz-page .option-btn:disabled {
+    cursor: default;
+}
+
+.quiz-page #feedback {
+    min-height: 22px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.quiz-page #next-btn,
+.quiz-page .result-box button {
+    display: block;
+    margin-left: auto;
+    margin-top: 20px;
+    padding: 13px 35px;
+    background: #00d9ff;
+    color: #001522;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quiz-page #next-btn:hover:not(:disabled),
+.quiz-page .result-box button:hover {
+    background: #00ffcc;
+    box-shadow: 0 0 18px #00d9ff;
+}
+
+.quiz-page #next-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.quiz-page .result-box {
+    display: none;
+    text-align: center;
+}
+
+.quiz-page .result-icon {
+    width: 65px;
+    height: 65px;
+    border: 2px solid #00eaff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: #00eaff;
+    font-size: 35px;
+    box-shadow: 0 0 20px #007caa;
+}
+
+.quiz-page .result-box h2 {
+    color: #00eaff;
+    letter-spacing: 3px;
+}
+
+.quiz-page #final-score {
+    color: #00eaff;
+    font-size: 55px;
+    text-shadow: 0 0 15px #00bfff;
+}
+
+.quiz-page #result-message {
+    color: #b5d5e8;
+    line-height: 1.8;
+}
+
+.quiz-page .quiz-footer {
+    color: #00cfff;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 35px;
+}
+
+/* Mobile Responsive */
+
+@media(max-width: 600px) {
+
+    .quiz-page .quiz-container {
+        margin: 35px auto;
+    }
+
+    .quiz-page .quiz-heading h1 {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .quiz-page .quiz-box,
+    .quiz-page .result-box {
+        padding: 20px;
+    }
+
+    .quiz-page #question {
+        font-size: 18px;
+    }
+
+    .quiz-page .option-btn {
+        font-size: 13px;
+        padding: 13px;
+    }
+
+}
+
+
+
+
+
+
+/* =================================
+   NEXSHIELD CYBER SECURITY QUIZ
+================================= */
+
+.quiz-page .quiz-container {
+    width: 90%;
+    max-width: 850px;
+    margin: 65px auto;
+    text-align: center;
+}
+
+.quiz-page .quiz-heading h1 {
+    color: #00eaff;
+    font-size: 36px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #00bfff;
+}
+
+.quiz-page .quiz-heading p {
+    color: #8baec4;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+.quiz-page .quiz-box,
+.quiz-page .result-box {
+    background: rgba(5, 17, 38, 0.94);
+    border: 1px solid #00bfff;
+    border-radius: 12px;
+    padding: 35px;
+    margin-top: 40px;
+    box-shadow:
+        0 0 15px rgba(0, 191, 255, 0.2),
+        inset 0 0 20px rgba(0, 191, 255, 0.04);
+    text-align: left;
+}
+
+.quiz-page .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #00eaff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.quiz-page .progress-bar {
+    height: 6px;
+    background: #1a304b;
+    margin: 25px 0 35px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.quiz-page #progress {
+    height: 100%;
+    width: 0%;
+    background: #00eaff;
+    box-shadow: 0 0 12px #00eaff;
+    transition: width 0.4s ease;
+}
+
+.quiz-page #question {
+    color: #ffffff;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.quiz-page #options {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.quiz-page .option-btn {
+    width: 100%;
+    padding: 16px;
+    text-align: left;
+    color: #cceeff;
+    background: #0b1c35;
+    border: 1px solid #164a69;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.quiz-page .option-btn:hover:not(:disabled) {
+    background: #103c55;
+    border-color: #00eaff;
+    box-shadow: 0 0 12px rgba(0, 234, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.quiz-page .option-btn.correct {
+    background: #063c32;
+    border-color: #00ffae;
+    color: #00ffae;
+}
+
+.quiz-page .option-btn.wrong {
+    background: #401923;
+    border-color: #ff5252;
+    color: #ff7777;
+}
+
+.quiz-page .option-btn:disabled {
+    cursor: default;
+}
+
+.quiz-page #feedback {
+    min-height: 22px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.quiz-page #next-btn,
+.quiz-page .result-box button {
+    display: block;
+    margin-left: auto;
+    margin-top: 20px;
+    padding: 13px 35px;
+    background: #00d9ff;
+    color: #001522;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quiz-page #next-btn:hover:not(:disabled),
+.quiz-page .result-box button:hover {
+    background: #00ffcc;
+    box-shadow: 0 0 18px #00d9ff;
+}
+
+.quiz-page #next-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.quiz-page .result-box {
+    display: none;
+    text-align: center;
+}
+
+.quiz-page .result-icon {
+    width: 65px;
+    height: 65px;
+    border: 2px solid #00eaff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: #00eaff;
+    font-size: 35px;
+    box-shadow: 0 0 20px #007caa;
+}
+
+.quiz-page .result-box h2 {
+    color: #00eaff;
+    letter-spacing: 3px;
+}
+
+.quiz-page #final-score {
+    color: #00eaff;
+    font-size: 55px;
+    text-shadow: 0 0 15px #00bfff;
+}
+
+.quiz-page #result-message {
+    color: #b5d5e8;
+    line-height: 1.8;
+}
+
+.quiz-page .quiz-footer {
+    color: #00cfff;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 35px;
+}
+
+/* Mobile Responsive */
+
+@media(max-width: 600px) {
+
+    .quiz-page .quiz-container {
+        margin: 35px auto;
+    }
+
+    .quiz-page .quiz-heading h1 {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .quiz-page .quiz-box,
+    .quiz-page .result-box {
+        padding: 20px;
+    }
+
+    .quiz-page #question {
+        font-size: 18px;
+    }
+
+    .quiz-page .option-btn {
+        font-size: 13px;
+        padding: 13px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+/* FIX: QUIZ QUESTION TEXT OVERLAPPING */
+
+.quiz-page #question {
+    display: block !important;
+
+    position: relative !important;
+
+    width: 100% !important;
+    height: auto !important;
+    min-height: 60px !important;
+
+    font-size: 23px !important;
+    line-height: 1.6 !important;
+
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+
+    margin: 25px 0 !important;
+    padding: 5px 0 !important;
+
+    transform: none !important;
+    animation: none !important;
+
+    text-shadow: none !important;
+}
+
+/* Remove unwanted duplicate heading effects */
+
+.quiz-page #question::before,
+.quiz-page #question::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Keep quiz options properly separated */
+
+.quiz-page #options {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 13px !important;
+    margin-top: 20px !important;
+}
+
+.quiz-page .option-btn {
+    line-height: 1.5 !important;
+    white-space: normal !important;
+    height: auto !important;
+    min-height: 50px !important;
+}
