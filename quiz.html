@@ -34,6 +34,95 @@
     <section class="quiz-container">
 
         <div class="quiz-heading">
+
+
+
+
+
+
+
+
+<!-- ACHIEVEMENT SECTION -->
+
+<div class="achievement-panel">
+
+    <h2>YOUR CYBER RANK</h2>
+
+    <p id="completed-count">0 / 10 QUIZZES COMPLETED</p>
+
+    <div class="badge-list">
+
+        <div class="achievement-badge" id="rookie-badge">
+            <div class="badge-symbol">🛡️</div>
+            <h3>CYBER ROOKIE</h3>
+            <p>Complete 3 Quiz Sets</p>
+            <span>LOCKED</span>
+        </div>
+
+        <div class="achievement-badge" id="guardian-badge">
+            <div class="badge-symbol">⚔️</div>
+            <h3>CYBER GUARDIAN</h3>
+            <p>Complete 5 Quiz Sets</p>
+            <span>LOCKED</span>
+        </div>
+
+        <div class="achievement-badge" id="sentinel-badge">
+            <div class="badge-symbol">👑</div>
+            <h3>CYBER SENTINEL</h3>
+            <p>Complete 10 Quiz Sets</p>
+            <span>LOCKED</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- QUIZ SET SELECTION -->
+
+<div id="set-selection">
+
+    <h2>SELECT YOUR CHALLENGE</h2>
+
+    <p>Choose a cyber security quiz set to begin.</p>
+
+    <div id="set-buttons"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <h1>CYBER SECURITY QUIZ</h1>
             <p>TEST YOUR CYBER DEFENCE KNOWLEDGE</p>
         </div>
@@ -84,6 +173,10 @@
                 RESTART QUIZ ↻
             </button>
 
+            <button onclick="showSets()">
+    CHOOSE ANOTHER QUIZ
+</button>
+
         </div>
 
         <p class="quiz-footer">
@@ -94,289 +187,450 @@
 
     <script>
 
-    // Custom Cursor
-    const cursor = document.querySelector(".custom-cursor");
+    // =====================================
+// NEXSHIELD - MULTI QUIZ SYSTEM
+// =====================================
 
-    document.addEventListener("mousemove", function(e) {
+// CUSTOM CURSOR
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", function(e) {
+    if (cursor) {
         cursor.style.left = e.clientX + "px";
         cursor.style.top = e.clientY + "px";
-    });
+    }
+});
 
-    // Questions
-    const questions = [
+// QUESTION FORMAT: [Question, Options, Correct Option Index]
 
-        {
-            question: "What is Phishing?",
-            options: [
-                "A programming language",
-                "A technique to steal sensitive information",
-                "A computer hardware component",
-                "A network connection"
-            ],
-            answer: 1
-        },
+const makeQ = (question, options, answer) => ({
+    question, options, answer
+});
 
-        {
-            question: "What should you do with a suspicious email?",
-            options: [
-                "Click every link",
-                "Share your password",
-                "Verify the sender first",
-                "Download attachments"
-            ],
-            answer: 2
-        },
+const quizSets = [
 
-        {
-            question: "What is the safest action for an unknown APK?",
-            options: [
-                "Install it immediately",
-                "Disable antivirus",
-                "Share it with friends",
-                "Avoid installing untrusted APKs"
-            ],
-            answer: 3
-        },
+{
+    name: "Email Phishing",
+    questions: [
+        makeQ("What is phishing?", ["Stealing information through deception", "A coding language", "A computer part", "A search engine"], 0),
+        makeQ("What is a suspicious email attachment?", ["A verified document", "An unexpected executable file", "A saved photo", "A normal text file"], 1),
+        makeQ("What should you check in an email?", ["Only its color", "Only its font", "Sender's email address", "Its length"], 2),
+        makeQ("What is email spoofing?", ["Creating a backup", "Faking the sender's identity", "Deleting emails", "Encrypting files"], 1),
+        makeQ("What does a phishing email often create?", ["Urgency and fear", "A software update", "A normal greeting", "A calendar event"], 0),
+        makeQ("What should you do with an unknown attachment?", ["Open it", "Forward it", "Verify it first", "Run it as administrator"], 2),
+        makeQ("What is a spam email?", ["An unwanted or unsolicited email", "A secure email", "A system file", "An encrypted message"], 0),
+        makeQ("Can a familiar-looking logo prove an email is genuine?", ["Yes, always", "No", "Only on mobile", "Only at night"], 1),
+        makeQ("What is the safest way to visit your bank website?", ["Use an unknown email link", "Use a trusted bookmark or official address", "Click a random advertisement", "Follow a forwarded link"], 1),
+        makeQ("What should you do after clicking a suspected phishing link?", ["Ignore every warning", "Enter your details", "Secure your account and report it", "Forward the link"], 2)
+    ]
+},
 
-        {
-            question: "Should you share your OTP with a bank caller?",
-            options: [
-                "Yes, always",
-                "Never share your OTP",
-                "Only at night",
-                "Only with unknown callers"
-            ],
-            answer: 1
-        },
+{
+    name: "SMS & Message Scams",
+    questions: [
+        makeQ("What is smishing?", ["SMS-based phishing", "A computer virus", "A secure password", "A phone setting"], 0),
+        makeQ("An unknown SMS says your parcel is stuck. What should you do?", ["Pay immediately", "Verify through the official courier website", "Share your OTP", "Download its APK"], 1),
+        makeQ("What is a common sign of a fraudulent SMS?", ["Personal greeting", "Urgent demand for payment", "Normal delivery update", "Known contact"], 1),
+        makeQ("Should you click shortened links from unknown numbers?", ["Always", "Only once", "No, verify them first", "Only on Wi-Fi"], 2),
+        makeQ("What is an SMS OTP?", ["A one-time verification code", "A permanent password", "A phone number", "A website address"], 0),
+        makeQ("A message claims you won a lottery. What is safest?", ["Pay a fee", "Share bank details", "Verify and ignore suspicious claims", "Click its link"], 2),
+        makeQ("What is message spoofing?", ["Changing phone brightness", "Faking the sender identity", "Deleting messages", "Blocking contacts"], 1),
+        makeQ("What should you do with suspicious WhatsApp messages?", ["Forward them", "Verify before trusting or sharing", "Open every attachment", "Share personal information"], 1),
+        makeQ("Can a scam message come from a compromised known account?", ["Yes", "Never", "Only from banks", "Only from computers"], 0),
+        makeQ("What should you do after receiving a scam SMS?", ["Report and block the sender", "Reply with OTP", "Pay the sender", "Share it publicly with personal details"], 0)
+    ]
+},
 
-        {
-            question: "What is a malicious link?",
-            options: [
-                "A trusted bookmark",
-                "A normal search result",
-                "A link that may steal data or harm your device",
-                "An offline file"
-            ],
-            answer: 2
-        },
+{
+    name: "Malicious APK Detection",
+    questions: [
+        makeQ("What is an APK?", ["Android application package", "A banking password", "A browser", "An antivirus"], 0),
+        makeQ("What is a malicious APK?", ["A safe application", "An app designed to perform harmful actions", "A photo file", "A system update"], 1),
+        makeQ("Where should you preferably download apps?", ["Unknown websites", "Random messages", "Trusted official app stores", "Pop-up advertisements"], 2),
+        makeQ("What is a dangerous app permission?", ["Calculator access to contacts without reason", "Screen brightness", "Wallpaper selection", "Font size"], 0),
+        makeQ("Can an APK steal personal information?", ["Yes", "Never", "Only on laptops", "Only without internet"], 0),
+        makeQ("What is sideloading?", ["Installing apps outside the official app store", "Deleting an app", "Updating a browser", "Changing a password"], 0),
+        makeQ("What should you do before installing an APK?", ["Check its source and permissions", "Disable security", "Share your OTP", "Ignore warnings"], 0),
+        makeQ("What is spyware?", ["Software that secretly monitors activity", "A photo editor", "A keyboard", "A safe browser"], 0),
+        makeQ("Does an app having many downloads guarantee safety?", ["Yes", "No", "Always on Android", "Only if free"], 1),
+        makeQ("What should you do if an app behaves suspiciously?", ["Grant more permissions", "Investigate, uninstall if necessary and scan the device", "Share its APK", "Ignore it"], 1)
+    ]
+},
 
-        {
-            question: "What does HTTPS provide?",
-            options: [
-                "A guarantee that a website is genuine",
-                "An encrypted connection",
-                "Free internet",
-                "Complete virus protection"
-            ],
-            answer: 1
-        },
+{
+    name: "Fake Websites & Links",
+    questions: [
+        makeQ("What is a fake website?", ["A website impersonating a legitimate service", "A search engine", "An official government portal", "A local file"], 0),
+        makeQ("What is typosquatting?", ["Using misspelled domain names to deceive users", "Typing a password", "Deleting a website", "Creating backups"], 0),
+        makeQ("Does HTTPS guarantee a website is genuine?", ["Yes", "No, it only indicates an encrypted connection", "Always", "Only on phones"], 1),
+        makeQ("What is a URL?", ["A web address", "A computer virus", "A password", "A file extension"], 0),
+        makeQ("What is a suspicious domain?", ["A correctly verified official domain", "A lookalike domain with unusual spelling", "A saved bookmark", "A trusted search result"], 1),
+        makeQ("What is a QR phishing attack?", ["A QR code leading to a malicious destination", "A safe backup", "A photo filter", "A network cable"], 0),
+        makeQ("What should you check before entering payment details?", ["Website authenticity and domain", "Only background color", "Number of images", "Font style"], 0),
+        makeQ("What is a URL shortener?", ["A service that creates shorter web links", "An antivirus", "A firewall", "A password manager"], 0),
+        makeQ("Can a fake login page steal passwords?", ["Yes", "Never", "Only offline", "Only through email"], 0),
+        makeQ("What is the safest response to a suspicious website?", ["Enter credentials", "Download its software", "Leave and verify through an official source", "Allow all notifications"], 2)
+    ]
+},
 
-        {
-            question: "Which is the strongest password?",
-            options: [
-                "12345678",
-                "password",
-                "om12345",
-                "Nex@Shield#92X!"
-            ],
-            answer: 3
-        },
+{
+    name: "Password Security",
+    questions: [
+        makeQ("Which password is strongest?", ["123456", "password", "Nex@Shield#92X!", "om123"], 2),
+        makeQ("What is password reuse?", ["Using different passwords", "Using the same password on multiple accounts", "Changing a password", "Creating a backup"], 1),
+        makeQ("What is a password manager?", ["A tool that securely stores passwords", "A social network", "A search engine", "A virus"], 0),
+        makeQ("How often should you change a compromised password?", ["Immediately", "Never", "After one year", "Only when asked by a stranger"], 0),
+        makeQ("What is brute-force password attack?", ["Guessing many password combinations", "Encrypting a file", "Updating software", "Blocking a website"], 0),
+        makeQ("What is credential stuffing?", ["Using leaked credentials on other websites", "Creating new accounts", "Changing usernames", "Scanning a printer"], 0),
+        makeQ("Should you share your password with friends?", ["Yes", "No", "Only online", "Only through SMS"], 1),
+        makeQ("What makes a password more secure?", ["Long and unique characters", "Your birth date", "Your name", "12345678"], 0),
+        makeQ("What is a passphrase?", ["A longer sequence of words used for authentication", "A phone number", "A website link", "A bank OTP"], 0),
+        makeQ("What should you do if your password is leaked?", ["Keep using it", "Change it and secure affected accounts", "Share it", "Ignore the warning"], 1)
+    ]
+},
 
-        {
-            question: "What is Two-Factor Authentication?",
-            options: [
-                "Using two computers",
-                "An additional layer of security",
-                "Sharing two passwords",
-                "Using two browsers"
-            ],
-            answer: 1
-        },
+{
+    name: "OTP & Banking Fraud",
+    questions: [
+        makeQ("What does OTP stand for?", ["One-Time Password", "Online Transfer Payment", "Open Text Protocol", "Official Transaction Page"], 0),
+        makeQ("Should bank staff ask for your OTP?", ["Yes", "No", "Only by phone", "Only through SMS"], 1),
+        makeQ("What is UPI PIN used for?", ["Authorizing UPI transactions", "Receiving every payment", "Opening email", "Unlocking Wi-Fi"], 0),
+        makeQ("Do you need to enter a UPI PIN to receive money?", ["Yes", "No", "Only for strangers", "Only at night"], 1),
+        makeQ("What is a fake KYC scam?", ["Fraudulent request to steal identity or banking details", "A genuine bank update", "A password manager", "A security patch"], 0),
+        makeQ("What should you do after an unauthorized bank transaction?", ["Wait a month", "Report it to your bank immediately", "Share another OTP", "Delete the SMS"], 1),
+        makeQ("What is a remote access scam?", ["Tricking someone into allowing device control", "Installing a trusted update", "Changing a wallpaper", "Using a calculator"], 0),
+        makeQ("What is a card skimmer?", ["A device that captures payment card information", "A bank application", "A password", "A firewall"], 0),
+        makeQ("What is a fake customer-care number risk?", ["It may connect you to a fraudster", "It improves security", "It blocks malware", "It encrypts your phone"], 0),
+        makeQ("What is India's cybercrime helpline number?", ["112", "1930", "100", "101"], 1)
+    ]
+},
 
-        {
-            question: "You receive a lottery-winning SMS from an unknown number. What should you do?",
-            options: [
-                "Pay the processing fee",
-                "Click its link",
-                "Ignore and verify the claim",
-                "Share bank details"
-            ],
-            answer: 2
-        },
+{
+    name: "Social Engineering",
+    questions: [
+        makeQ("What is social engineering?", ["Manipulating people to reveal information or take unsafe actions", "Computer repair", "Data backup", "Software coding"], 0),
+        makeQ("What is pretexting?", ["Creating a false story to gain trust", "Installing antivirus", "Updating software", "Encrypting a disk"], 0),
+        makeQ("What is baiting?", ["Offering something attractive to trick a victim", "Creating a strong password", "Blocking spam", "Securing Wi-Fi"], 0),
+        makeQ("What is impersonation?", ["Pretending to be someone else", "Changing screen resolution", "Updating a browser", "Deleting files"], 0),
+        makeQ("Why do scammers create urgency?", ["To prevent careful thinking", "To improve internet speed", "To protect privacy", "To update devices"], 0),
+        makeQ("What is shoulder surfing?", ["Watching someone enter sensitive information", "Hacking a server remotely", "Sending an email", "Updating a phone"], 0),
+        makeQ("What is tailgating in physical security?", ["Following an authorized person into a restricted area", "Sending spam", "Changing a password", "Using a firewall"], 0),
+        makeQ("What should you do if an unknown caller claims to be IT support?", ["Give remote access", "Verify their identity independently", "Share your password", "Install their APK"], 1),
+        makeQ("What is a common goal of social engineering?", ["Stealing information or access", "Improving battery life", "Increasing storage", "Updating software"], 0),
+        makeQ("How can you defend against social engineering?", ["Verify requests and protect sensitive information", "Trust every caller", "Share OTPs", "Ignore security warnings"], 0)
+    ]
+},
 
-        {
-            question: "What is the best way to stay safe online?",
-            options: [
-                "Trust every email",
-                "Share OTPs",
-                "Use the same password everywhere",
-                "Verify links, messages and senders"
-            ],
-            answer: 3
-        }
+{
+    name: "Malware & Ransomware",
+    questions: [
+        makeQ("What is malware?", ["Malicious software", "A secure browser", "A keyboard", "A document format"], 0),
+        makeQ("What is ransomware?", ["Malware that locks or encrypts data for payment", "A backup tool", "A search engine", "A firewall"], 0),
+        makeQ("What is a computer worm?", ["Malware that can self-replicate and spread", "A safe application", "A browser extension", "A password"], 0),
+        makeQ("What is a Trojan horse?", ["Malware disguised as legitimate software", "A trusted backup", "A hardware device", "An encrypted email"], 0),
+        makeQ("What is a keylogger?", ["Software or hardware that records keystrokes", "A keyboard cleaner", "A screen saver", "A browser"], 0),
+        makeQ("What is a botnet?", ["A network of compromised devices", "A secure Wi-Fi network", "A password vault", "A file format"], 0),
+        makeQ("What is a firewall?", ["A system that filters network traffic", "A type of malware", "A social network", "A photo editor"], 0),
+        makeQ("Why are software updates important?", ["They can fix security vulnerabilities", "They always delete data", "They disable security", "They reveal passwords"], 0),
+        makeQ("What is a safe backup practice?", ["Keep separate protected backups", "Keep only one copy on the same device", "Share backups publicly", "Disable encryption"], 0),
+        makeQ("What should you do if ransomware infects a device?", ["Disconnect it from networks and seek trusted incident-response help", "Pay immediately without checking", "Forward the malware", "Ignore it"], 0)
+    ]
+},
 
+{
+    name: "Online Privacy & Data Theft",
+    questions: [
+        makeQ("What is personal data?", ["Information that can identify a person", "A computer game", "A screen setting", "A browser theme"], 0),
+        makeQ("What is data leakage?", ["Sensitive information being exposed without authorization", "Creating a backup", "Installing an update", "Changing a wallpaper"], 0),
+        makeQ("What is a privacy setting?", ["A control over how information is shared", "A gaming setting", "A keyboard shortcut", "A file format"], 0),
+        makeQ("What is public Wi-Fi risk?", ["Data may be exposed on insecure networks", "It always steals passwords", "It blocks all malware", "It guarantees privacy"], 0),
+        makeQ("What is a VPN commonly used for?", ["Creating an encrypted network connection", "Increasing phone storage", "Removing all viruses", "Guaranteeing anonymity"], 0),
+        makeQ("What is identity theft?", ["Using someone's personal information fraudulently", "Creating a new email", "Changing a profile photo", "Updating an app"], 0),
+        makeQ("Why should you limit app permissions?", ["To reduce unnecessary access to your data", "To increase screen brightness", "To improve camera quality", "To change wallpaper"], 0),
+        makeQ("What is digital footprint?", ["The trail of information you leave online", "A computer virus", "A password", "A network cable"], 0),
+        makeQ("What should you do before sharing personal photos publicly?", ["Consider privacy and audience", "Share every detail", "Include passwords", "Share location automatically"], 0),
+        makeQ("What is data encryption?", ["Converting data into a protected unreadable form without the key", "Deleting data permanently", "Increasing storage", "Compressing photos only"], 0)
+    ]
+},
+
+{
+    name: "Advanced Cyber Threats",
+    questions: [
+        makeQ("What is a zero-day vulnerability?", ["A vulnerability not yet fixed by its vendor", "A normal update", "A strong password", "A backup file"], 0),
+        makeQ("What is a DDoS attack?", ["Flooding a service with traffic from multiple sources", "Encrypting one file", "Changing a password", "Installing an antivirus"], 0),
+        makeQ("What is SQL injection?", ["Injecting malicious SQL through unsafe input", "Updating a database safely", "Encrypting email", "Scanning a QR code"], 0),
+        makeQ("What is cross-site scripting (XSS)?", ["Injecting malicious scripts into web pages", "Creating a strong password", "Backing up a server", "Blocking spam"], 0),
+        makeQ("What is penetration testing?", ["Authorized testing for security weaknesses", "Unauthorized data theft", "Deleting a website", "Sending spam"], 0),
+        makeQ("What is ethical hacking?", ["Authorized security testing", "Stealing passwords", "Spreading malware", "Breaking into accounts without permission"], 0),
+        makeQ("What is multi-factor authentication?", ["Using multiple different authentication factors", "Using one password twice", "Sharing two accounts", "Installing two browsers"], 0),
+        makeQ("What is end-to-end encryption?", ["Protecting communication so only intended endpoints can read it", "Publicly sharing messages", "Removing passwords", "Compressing files"], 0),
+        makeQ("What is an intrusion detection system?", ["A system that monitors suspicious activity", "A gaming application", "A password generator", "A photo editor"], 0),
+        makeQ("What is the principle of least privilege?", ["Giving users only the access they need", "Giving everyone administrator access", "Sharing passwords", "Disabling security controls"], 0)
+    ]
+}
+
+];
+
+// =====================================
+// PROGRESS & BADGE STORAGE
+// =====================================
+
+let completedSets = JSON.parse(
+    localStorage.getItem("nexshieldCompletedSets") || "[]"
+);
+
+let currentSet = 0;
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("next-btn");
+const feedback = document.getElementById("feedback");
+
+// =====================================
+// BADGE UPDATE
+// =====================================
+
+function updateAchievements() {
+
+    const total = completedSets.length;
+
+    document.getElementById("completed-count").textContent =
+        `${total} / 10 QUIZZES COMPLETED`;
+
+    const badges = [
+        {id:"rookie-badge", limit:3},
+        {id:"guardian-badge", limit:5},
+        {id:"sentinel-badge", limit:10}
     ];
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+    badges.forEach(badge => {
 
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
-    const nextBtn = document.getElementById("next-btn");
-    const feedback = document.getElementById("feedback");
+        const element = document.getElementById(badge.id);
+        const unlocked = total >= badge.limit;
 
-    // Load Question
-    function loadQuestion() {
+        element.classList.toggle("unlocked", unlocked);
 
-        answered = false;
+        element.querySelector("span").textContent =
+            unlocked ? "UNLOCKED ✓" : "LOCKED";
 
-        feedback.textContent = "";
-        nextBtn.disabled = true;
+    });
 
-        const q = questions[currentQuestion];
+}
 
-        questionEl.textContent = q.question;
+// =====================================
+// SHOW QUIZ SETS
+// =====================================
 
-        document.getElementById("question-number").textContent =
-            `QUESTION ${String(currentQuestion + 1).padStart(2,"0")} / 10`;
+function showSets() {
 
-        document.getElementById("score").textContent =
-            `SCORE: ${String(score).padStart(2,"0")}`;
+    document.getElementById("set-selection").style.display = "block";
+    document.getElementById("quiz-box").style.display = "none";
+    document.getElementById("result-box").style.display = "none";
 
-        document.getElementById("progress").style.width =
-            ((currentQuestion + 1) / questions.length * 100) + "%";
+    const container = document.getElementById("set-buttons");
+    container.innerHTML = "";
 
-        optionsEl.innerHTML = "";
+    quizSets.forEach((set, index) => {
 
-        q.options.forEach((option, index) => {
+        const completed = completedSets.includes(index);
 
-            const btn = document.createElement("button");
+        const button = document.createElement("button");
 
-            btn.className = "option-btn";
-            btn.textContent = option;
+        button.className = "set-btn";
+        button.innerHTML =
+            `SET ${index + 1} — ${set.name}
+            <span>${completed ? "COMPLETED ✓" : "START QUIZ →"}</span>`;
 
-            btn.addEventListener("click", () => {
-                selectAnswer(index, btn);
-            });
-
-            optionsEl.appendChild(btn);
-
+        button.addEventListener("click", () => {
+            startQuiz(index);
         });
 
-    }
+        container.appendChild(button);
 
-    // Answer Checking
-    function selectAnswer(selected, button) {
+    });
 
-        if (answered) return;
+    updateAchievements();
 
-        answered = true;
+}
 
-        const correct = questions[currentQuestion].answer;
+// =====================================
+// START QUIZ
+// =====================================
 
-        const allButtons =
-            document.querySelectorAll(".option-btn");
+function startQuiz(index) {
 
-        allButtons.forEach((btn, index) => {
+    currentSet = index;
+    currentQuestion = 0;
+    score = 0;
 
-            btn.disabled = true;
+    document.getElementById("set-selection").style.display = "none";
+    document.getElementById("quiz-box").style.display = "block";
+    document.getElementById("result-box").style.display = "none";
 
-            if (index === correct) {
-                btn.classList.add("correct");
-            }
+    loadQuestion();
 
+}
+
+// =====================================
+// LOAD QUESTION
+// =====================================
+
+function loadQuestion() {
+
+    answered = false;
+    feedback.textContent = "";
+    nextBtn.disabled = true;
+
+    const questions = quizSets[currentSet].questions;
+    const q = questions[currentQuestion];
+
+    questionEl.textContent = q.question;
+
+    document.getElementById("question-number").textContent =
+        `QUESTION ${currentQuestion + 1} / 10`;
+
+    document.getElementById("score").textContent =
+        `SCORE: ${score}`;
+
+    document.getElementById("progress").style.width =
+        ((currentQuestion + 1) / 10 * 100) + "%";
+
+    optionsEl.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option-btn";
+        button.textContent = option;
+
+        button.addEventListener("click", () => {
+            selectAnswer(index, button);
         });
 
-        if (selected === correct) {
+        optionsEl.appendChild(button);
 
-            score++;
+    });
 
-            feedback.textContent = "✓ CORRECT ANSWER!";
+}
 
-            feedback.style.color = "#00ffae";
+// =====================================
+// CHECK ANSWER
+// =====================================
 
-        } else {
+function selectAnswer(selected, button) {
 
-            button.classList.add("wrong");
+    if (answered) return;
 
-            feedback.textContent = "✕ INCORRECT! CHECK THE GREEN OPTION.";
+    answered = true;
 
-            feedback.style.color = "#ff5252";
+    const correct = quizSets[currentSet]
+        .questions[currentQuestion].answer;
 
-        }
+    const allButtons =
+        document.querySelectorAll(".option-btn");
 
-        document.getElementById("score").textContent =
-            `SCORE: ${String(score).padStart(2,"0")}`;
+    allButtons.forEach((btn, index) => {
 
-        nextBtn.disabled = false;
+        btn.disabled = true;
 
-    }
-
-    // Next Button
-    nextBtn.addEventListener("click", function() {
-
-        if (!answered) return;
-
-        currentQuestion++;
-
-        if (currentQuestion < questions.length) {
-
-            loadQuestion();
-
-        } else {
-
-            showResult();
-
+        if (index === correct) {
+            btn.classList.add("correct");
         }
 
     });
 
-    // Result
-    function showResult() {
+    if (selected === correct) {
 
-        document.getElementById("quiz-box").style.display = "none";
+        score++;
 
-        document.getElementById("result-box").style.display = "block";
+        feedback.textContent = "✓ CORRECT ANSWER!";
+        feedback.style.color = "#00ffae";
 
-        const percentage = score * 10;
+    } else {
 
-        document.getElementById("final-score").textContent =
-            score + "/10";
+        button.classList.add("wrong");
 
-        let message;
-
-        if (score >= 9) {
-            message = "EXCELLENT! YOU ARE A CYBER SECURITY CHAMPION.";
-        } else if (score >= 7) {
-            message = "GREAT JOB! YOU KNOW HOW TO STAY SAFE ONLINE.";
-        } else if (score >= 5) {
-            message = "GOOD ATTEMPT! KEEP LEARNING.";
-        } else {
-            message = "KEEP PRACTICING! IMPROVE YOUR CYBER SECURITY KNOWLEDGE.";
-        }
-
-        document.getElementById("result-message").textContent =
-            message + " YOUR ACCURACY: " + percentage + "%";
+        feedback.textContent = "✕ INCORRECT ANSWER!";
+        feedback.style.color = "#ff5252";
 
     }
 
-    // Restart
-    function restartQuiz() {
+    document.getElementById("score").textContent =
+        `SCORE: ${score}`;
 
-        currentQuestion = 0;
-        score = 0;
+    nextBtn.disabled = false;
 
-        document.getElementById("result-box").style.display = "none";
+}
 
-        document.getElementById("quiz-box").style.display = "block";
+// =====================================
+// NEXT QUESTION
+// =====================================
+
+nextBtn.addEventListener("click", function() {
+
+    if (!answered) return;
+
+    currentQuestion++;
+
+    if (currentQuestion < 10) {
 
         loadQuestion();
 
+    } else {
+
+        finishQuiz();
+
     }
 
-    // Start
-    loadQuestion();
+});
+
+// =====================================
+// FINISH QUIZ
+// =====================================
+
+function finishQuiz() {
+
+    document.getElementById("quiz-box").style.display = "none";
+
+    document.getElementById("result-box").style.display = "block";
+
+    // Count each set only once
+    if (!completedSets.includes(currentSet)) {
+
+        completedSets.push(currentSet);
+
+        localStorage.setItem(
+            "nexshieldCompletedSets",
+            JSON.stringify(completedSets)
+        );
+
+    }
+
+    document.getElementById("final-score").textContent =
+        `${score}/10`;
+
+    document.getElementById("result-message").textContent =
+        `You scored ${score * 10}%. You have completed ${completedSets.length} different quiz sets.`;
+
+    updateAchievements();
+
+}
+
+// =====================================
+// RESTART CURRENT QUIZ
+// =====================================
+
+function restartQuiz() {
+    startQuiz(currentSet);
+}
+
+// INITIALIZE
+updateAchievements();
+showSets();
 
     </script>
 
