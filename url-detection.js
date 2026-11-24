@@ -29,215 +29,341 @@ document.addEventListener("DOMContentLoaded", function () {
         scanner.appendChild(resultBox);
     }
 
-    function analyzeURL(rawURL) {
 
-        let score = 0;
-        let reasons = [];
-        let domain = "Unknown";
-        let parsedURL;
 
-        const url = rawURL.trim();
+function analyzeURL(rawURL) {
 
-        // 1. URL validation
-        if (!url) {
-            return {
-                error: "Please enter a URL."
-            };
+    let score = 0;
+    let reasons = [];
+    let domain = "";
+
+    const url = rawURL.trim();
+
+    if (!url) {
+        return { error: "Please enter a URL." };
+    }
+
+    if (/\s/.test(url)) {
+        return { error: "URL contains spaces. Enter a valid URL." };
+    }
+
+    let parsedURL;
+
+    try {
+        parsedURL = new URL(
+            /^https?:\/\//i.test(url) ? url : "https://" + url
+        );
+    } catch {
+        return { error: "Invalid URL. Please check the address." };
+    }
+
+    if (!["http:", "https:"].includes(parsedURL.protocol)) {
+        return { error: "Unsupported URL protocol." };
+    }
+
+    domain = parsedURL.hostname.toLowerCase();
+
+    if (!domain || domain.length > 253) {
+        return { error: "Invalid domain name." };
+    }
+
+    // Remove trailing dot from hostname
+    domain = domain.replace(/\.$/, "");
+
+    // Add each risk indicator only once
+    function flag(condition, points, reason) {
+        if (condition && !reasons.includes(reason)) {
+            score += points;
+            reasons.push(reason);
         }
+    }
 
-        if (/\s/.test(url)) {
-            return {
-                error: "URL contains spaces. Please enter a valid URL."
-            };
+    // 1. HTTP security check
+    flag(
+        parsedURL.protocol === "http:",
+        5,
+        "Website does not use HTTPS encryption."
+    );
+
+    // 2. IP address detection (IPv4)
+    const ipv4 =
+        /^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)$/;
+
+    const isIPv4 = ipv4.test(domain);
+    const isIPv6 = domain.includes(":");
+
+    flag(
+        isIPv4 || isIPv6,
+        25,
+        "Website uses an IP address instead of a regular domain."
+    );
+
+    // 3. URL shortener detection
+    const shorteners = [
+        "bit.ly", "tinyurl.com", "t.co", "goo.gl",
+        "ow.ly", "is.gd", "buff.ly", "cutt.ly",
+        "shorturl.at", "rebrand.ly", "rb.gy",
+        "lnkd.in", "tiny.cc"
+    ];
+
+    flag(
+        shorteners.includes(domain),
+        20,
+        "URL uses a known link-shortening service. Its final destination is hidden."
+    );
+
+    // 4. Punycode detection
+    flag(
+        domain.split(".").some(part => part.startsWith("xn--")),
+        25,
+        "Domain contains Punycode encoding, which can be used for lookalike domains."
+    );
+
+    // 5. Suspicious domain structure
+    const labels = domain.split(".");
+
+    flag(
+        labels.length >= 5,
+        10,
+        "Domain contains an unusually large number of subdomains."
+    );
+
+    flag(
+        /-{2,}/.test(domain),
+        8,
+        "Domain contains repeated hyphens."
+    );
+
+    // 6. Misleading @ symbol / credentials
+    flag(
+        parsedURL.username !== "" || parsedURL.password !== "",
+        35,
+        "URL contains credentials before the hostname. This can hide the real destination."
+    );
+
+    // 7. Brand impersonation detection
+    const brands = [
+        {
+            name: "PayPal",
+            domains: ["paypal.com"]
+        },
+        {
+            name: "Google",
+            domains: ["google.com", "google.co.in"]
+        },
+        {
+            name: "Microsoft",
+            domains: ["microsoft.com", "live.com", "outlook.com"]
+        },
+        {
+            name: "Amazon",
+            domains: ["amazon.com", "amazon.in"]
+        },
+        {
+            name: "Apple",
+            domains: ["apple.com"]
+        },
+        {
+            name: "Facebook",
+            domains: ["facebook.com"]
+        },
+        {
+            name: "Instagram",
+            domains: ["instagram.com"]
+        },
+        {
+            name: "WhatsApp",
+            domains: ["whatsapp.com"]
+        },
+        {
+            name: "SBI",
+            domains: ["sbi.co.in", "onlinesbi.sbi"]
+        },
+        {
+            name: "HDFC Bank",
+            domains: ["hdfcbank.com"]
+        },
+        {
+            name: "ICICI Bank",
+            domains: ["icicibank.com"]
+        },
+        {
+            name: "Axis Bank",
+            domains: ["axisbank.com"]
         }
+    ];
 
-        let normalizedURL = url;
+    for (const brand of brands) {
 
-        if (!/^https?:\/\//i.test(normalizedURL)) {
-            normalizedURL = "https://" + normalizedURL;
-        }
+        const brandText = brand.name
+            .toLowerCase()
+            .replace(/\s/g, "");
 
-        try {
-            parsedURL = new URL(normalizedURL);
-        } catch (error) {
-            return {
-                error: "Invalid URL. Please enter a valid website address."
-            };
-        }
+        const hostText = domain.replace(/[^a-z0-9]/g, "");
 
-        if (!["http:", "https:"].includes(parsedURL.protocol)) {
-            return {
-                error: "Only HTTP and HTTPS URLs are supported."
-            };
-        }
+        const mentionsBrand =
+            hostText.includes(brandText) ||
+            domain.split(".").some(label =>
+                label.includes(brandText)
+            );
 
-        domain = parsedURL.hostname.toLowerCase();
-
-        if (!domain || !domain.includes(".")) {
-            return {
-                error: "Invalid domain name."
-            };
-        }
-
-        // Helper for adding risk
-        function flag(condition, points, reason) {
-            if (condition) {
-                score += points;
-                reasons.push(reason);
-            }
-        }
-
-        // 2. HTTP instead of HTTPS
-        flag(
-            parsedURL.protocol === "http:",
-            10,
-            "Website is using HTTP instead of secure HTTPS."
+        const isOfficial = brand.domains.some(
+            official =>
+                domain === official ||
+                domain.endsWith("." + official)
         );
 
-        // 3. IP address based URL
-        const ipv4Pattern =
-            /^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)$/;
-
-        const isIP = ipv4Pattern.test(domain);
-
-        flag(
-            isIP,
-            30,
-            "Website uses an IP address instead of a normal domain name."
-        );
-
-        // 4. URL shorteners
-        const shorteners = [
-            "bit.ly",
-            "tinyurl.com",
-            "t.co",
-            "goo.gl",
-            "ow.ly",
-            "is.gd",
-            "buff.ly",
-            "cutt.ly",
-            "shorturl.at",
-            "rebrand.ly"
-        ];
-
-        const isShortener = shorteners.includes(domain);
-
-        flag(
-            isShortener,
-            20,
-            "URL uses a shortened link which hides the final destination."
-        );
-
-        // 5. Suspicious words in URL
-        const suspiciousWords = [
-            "login",
-            "verify",
-            "verification",
-            "secure",
-            "account",
-            "update",
-            "password",
-            "banking",
-            "wallet",
-            "free",
-            "bonus",
-            "prize",
-            "claim",
-            "gift",
-            "reward",
-            "confirm"
-        ];
-
-        const urlText = (
-            parsedURL.hostname +
-            parsedURL.pathname +
-            parsedURL.search
-        ).toLowerCase();
-
-        const foundWords = suspiciousWords.filter(word =>
-            urlText.includes(word)
-        );
-
-        if (foundWords.length > 0) {
+        if (mentionsBrand && !isOfficial) {
             flag(
                 true,
-                Math.min(foundWords.length * 5, 15),
-                "Suspicious keywords found: " + foundWords.join(", ")
+                35,
+                "Domain may be impersonating " + brand.name + ". Verify the official website."
             );
         }
-
-        // 6. Excessive subdomains
-        const domainParts = domain.split(".");
-
-        flag(
-            domainParts.length >= 5,
-            15,
-            "URL contains an unusually large number of subdomains."
-        );
-
-        // 7. Misleading @ symbol
-        flag(
-            parsedURL.username !== "" || parsedURL.password !== "",
-            25,
-            "URL contains user credentials before the domain, which may be misleading."
-        );
-
-        // 8. Suspicious domain patterns
-        flag(
-            /xn--/i.test(domain),
-            20,
-            "Domain uses Punycode encoding and may imitate another website."
-        );
-
-        flag(
-            /-{2,}/.test(domain),
-            10,
-            "Domain contains repeated hyphens."
-        );
-
-        // 9. Very long URL
-        flag(
-            url.length > 150,
-            10,
-            "URL is unusually long."
-        );
-
-        // 10. Suspicious file extensions
-        flag(
-            /\.(apk|exe|scr|bat|cmd|msi|zip)$/i.test(parsedURL.pathname),
-            20,
-            "URL points to a potentially risky downloadable file."
-        );
-
-        // 11. Final score
-        score = Math.min(score, 100);
-
-        let risk = "SAFE";
-        let description = "No obvious suspicious patterns were detected.";
-
-        if (score >= 60) {
-            risk = "HIGH";
-            description = "This URL contains multiple suspicious indicators.";
-        } else if (score >= 30) {
-            risk = "MEDIUM";
-            description = "This URL has suspicious characteristics. Be careful.";
-        } else if (score >= 10) {
-            risk = "LOW";
-            description = "Some unusual characteristics were detected.";
-        }
-
-        if (reasons.length === 0) {
-            reasons.push("No suspicious URL patterns were detected by this scanner.");
-        }
-
-        return {
-            domain,
-            score,
-            risk,
-            description,
-            reasons
-        };
     }
+
+    // 8. Suspicious words in hostname only
+    const suspiciousHostWords = [
+        "secure-login",
+        "account-verify",
+        "verify-account",
+        "banking-update",
+        "password-reset",
+        "free-gift",
+        "claim-prize"
+    ];
+
+    flag(
+        suspiciousHostWords.some(word => domain.includes(word)),
+        15,
+        "Hostname contains a suspicious combination of words."
+    );
+
+    // 9. Suspicious URL path
+    const path = parsedURL.pathname.toLowerCase();
+
+    flag(
+        /\/(login|signin|verify|webscr|credential|password-reset)(\/|$)/i.test(path),
+        5,
+        "URL path contains a login or verification-related keyword."
+    );
+
+    // 10. Suspicious redirect parameters
+    const redirectParams = [
+        "redirect", "redirect_url", "return_url",
+        "next", "continue", "destination"
+    ];
+
+    let hasExternalRedirect = false;
+
+    for (const param of redirectParams) {
+        const value = parsedURL.searchParams.get(param);
+
+        if (value && /^https?:\/\//i.test(value)) {
+            try {
+                const target = new URL(value);
+
+                if (target.hostname !== domain) {
+                    hasExternalRedirect = true;
+                }
+            } catch {}
+        }
+    }
+
+    flag(
+        hasExternalRedirect,
+        15,
+        "URL contains a parameter redirecting visitors to another website."
+    );
+
+    // 11. Unusual port
+    flag(
+        parsedURL.port !== "" &&
+        !["80", "443"].includes(parsedURL.port),
+        10,
+        "Website uses an unusual network port."
+    );
+
+    // 12. Risky download extension
+    flag(
+        /\.(apk|exe|scr|bat|cmd|msi|js|jar)$/i.test(path),
+        20,
+        "URL points to a potentially risky executable or application file."
+    );
+
+    // 13. Excessively long URL
+    flag(
+        url.length > 200,
+        5,
+        "URL is unusually long and should be checked carefully."
+    );
+
+    // 14. Excessive encoding
+    const encodedCount = (url.match(/%[0-9a-f]{2}/gi) || []).length;
+
+    flag(
+        encodedCount >= 8,
+        8,
+        "URL contains an unusually high number of encoded characters."
+    );
+
+    // Final score
+    score = Math.min(score, 100);
+
+    let risk;
+    let description;
+
+    if (score >= 60) {
+        risk = "HIGH";
+        description = "Multiple strong suspicious indicators were detected.";
+    } else if (score >= 25) {
+        risk = "MEDIUM";
+        description = "Several suspicious indicators were detected.";
+    } else if (score >= 10) {
+        risk = "LOW";
+        description = "Some unusual characteristics need verification.";
+    } else {
+        risk = "SAFE";
+        description = "No major suspicious patterns were detected by this scanner.";
+    }
+
+    if (reasons.length === 0) {
+        reasons.push("No suspicious patterns were detected in the URL structure.");
+    }
+
+    return {
+        domain,
+        score,
+        risk,
+        description,
+        reasons
+    };
+}
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Display results
     function displayResult(result) {
