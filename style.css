@@ -1813,6 +1813,94 @@ margin: auto;
     height: auto !important;
     min-height: 50px !important;
 }
+/* URL DETECTION ICON */
+
+.url-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(63%) sepia(99%) saturate(2000%) hue-rotate(160deg);
+}
+
+/* DETECTION BUTTON LAYOUT */
+
+.detect-lines {
+    display: grid;
+    grid-template-columns: repeat(2, 160px);
+    justify-content: center;
+    gap: 25px;
+    margin: 35px auto;
+}
+
+.detect-lines a {
+    margin: 0;
+    width: 160px;
+    min-height: 55px;
+}
+
+/* FOURTH BUTTON ANIMATION */
+
+.detect-lines a:nth-child(4) {
+    animation: detectionreveal 1s ease 1.2s 1;
+    animation-fill-mode: forwards;
+}
+/* DETECTION BUTTONS - SINGLE ROW */
+
+.detect-lines {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 35px auto;
+}
+
+.detect-lines a {
+    width: 160px;
+    margin: 0;
+}
+/* DESKTOP VIEW */
+.detect-lines {
+    gap: 200px;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+    .detect-lines {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .detect-lines a {
+        width: 140px;
+        margin: 0;
+    }
+}
+/* URL INPUT FIELD */
+
+.email-scanner input[type="url"] {
+    width: 100%;
+    padding: 16px;
+    background: #0B1930;
+    color: white;
+    border: 1px solid #31516D;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.email-scanner input[type="url"]:focus {
+    border-color: #00BFFF;
+    box-shadow: 0 0 12px rgba(0, 191, 255, 0.2);
+}
+
+.email-scanner input[type="url"]::placeholder {
+    color: #8195AA;
+}
 
 
 

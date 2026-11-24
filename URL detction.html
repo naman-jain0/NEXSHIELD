@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexshield - URL Scam Detection</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="email-page">
+
+<div class="custom-cursor">
+    <div class="crosshair-ring"></div>
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+</div>
+
+<header class="email-header">
+
+    <h1>NEXSHIELD</h1>
+
+    <a href="index.html" class="hm">Home</a>
+
+</header>
+
+<main class="email-container">
+
+    <section class="email-intro">
+
+        <span class="email-tag">AI SECURITY SCANNER</span>
+
+        <h2>URL Scam Detection</h2>
+
+        <p>
+            Analyze suspicious links and identify
+            potential online threats before visiting them.
+        </p>
+
+    </section>
+<section class="email-scanner">
+
+    <h3>Analyze Your URL</h3>
+
+    <p class="scanner-description">
+        Paste the URL you want to check below.
+    </p>
+
+    <form>
+
+        <label for="url-input">
+            Website URL
+        </label>
+
+        <input
+            type="url"
+            id="url-input"
+            name="url"
+            placeholder="https://example.com"
+            required
+        >
+
+        <div class="email-actions">
+
+            <button type="button" class="detect-btn">
+                Scan URL
+            </button>
+
+            <button type="reset" class="reset-btn">
+                Reset
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+<section class="email-features">
+
+    <div class="feature-card">
+        <h3>URL Analysis</h3>
+        <p>Identify suspicious links and unusual URL patterns.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Link Security</h3>
+        <p>Check potential threats before visiting a website.</p>
+    </div>
+
+</section>
+</main>
+<script>
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", function(e) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+</script>
+</body>
+</html>
