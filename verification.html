@@ -6,6 +6,24 @@
 </head>
 
 <body>
+
+
+<div class="custom-cursor">
+    <div class="crosshair-horizontal"></div>
+    <div class="crosshair-vertical"></div>
+    <div class="crosshair-center"></div>
+    <div class="crosshair-ring"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <div class="verification-container">
 
 <h1>NEXSHIELD</h1>
@@ -33,5 +51,50 @@
 </p>
 
 </div>
+
+
+<script>
+document.querySelector(".verify-btn").addEventListener("click", function() {
+
+    const captcha = document.getElementById("captcha");
+
+    if (captcha.checked) {
+        window.location.href = "index.html";
+    } 
+    else {
+        alert("Please verify that you are not a robot!");
+    }
+
+});
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const cursor = document.querySelector(".custom-cursor");
+
+    if (!cursor) {
+        console.log("Custom cursor element not found!");
+        return;
+    }
+
+    document.addEventListener("mousemove", function(e) {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+    });
+
+});
+</script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
